@@ -810,7 +810,8 @@ static unsigned int __init select_freq_plan(void)
 	if (speed_bin == 0x1)
 		max_khz = 1512000;
 	else
-		max_khz = 1188000;
+//		max_khz = 1188000;
+		max_khz = 1512000;
 
 	/* Truncate the table based to max_khz. */
 	for (f = acpu_freq_tbl; f->acpuclk_khz != 0; f++) {
