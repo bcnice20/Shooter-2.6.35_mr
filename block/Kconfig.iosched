@@ -45,7 +45,7 @@ config CFQ_GROUP_IOSCHED
 
 config IOSCHED_SIO
 	tristate "Simple I/O scheduler"
-	defauly y
+	default y
 	---help---
 	  the Simple I/O scheduler is an extremly simple scheduler,
 	  based on noop and deadline, that relies on deadlines to
