@@ -13,6 +13,8 @@ cp $wimax/wimaxuart/wimaxuart.ko $mods
 cp $driver/spi/spidev.ko $mods
 cp $driver/video/backlight/lcd.ko $mods
 
+rm $out/shooter-kern.zip
+
 cp $zimg $out/kernel
 
 cd $out
