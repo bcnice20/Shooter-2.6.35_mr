@@ -466,9 +466,9 @@ static struct dsi_cmd_desc novatek_3vci_cmds[] = {
 #define BRI_SETTING_DEF		143
 #define BRI_SETTING_MAX		255
 
-#define PWM_MIN				8
+#define PWM_MIN				6
 #define PWM_DEFAULT			91
-#define PWM_MAX				232
+#define PWM_MAX				255
 
 unsigned char shrink_br = BRI_SETTING_MAX;
 unsigned char last_br_2d = BRI_SETTING_MAX;
