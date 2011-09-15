@@ -1,8 +1,8 @@
 #!/bin/bash -
 
-driver=~/android/shooter-2.6.35/drivers
+driver=~/android/main/drivers
 wimax=$driver/net/wimax
-zimg=~/android/shooter-2.6.35/arch/arm/boot/zImage
+zimg=~/android/main/shooter-2.6.35_mr/arch/arm/boot/zImage
 out=~/android/shooter-out
 mods=$out/system/lib/modules
 net=$driver/net/wireless/bcm4329_248
