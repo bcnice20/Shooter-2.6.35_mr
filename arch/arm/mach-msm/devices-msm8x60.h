@@ -62,6 +62,8 @@ extern struct platform_device msm_device_gpio;
 extern struct platform_device msm_device_vidc;
 extern struct platform_device msm_camera_sensor_webcam;
 
+extern struct platform_device msm_charm_modem;
+
 #ifdef CONFIG_SENSORS_M_ADC
 extern struct xoadc_platform_data xoadc_pdata;
 extern struct resource resources_adc;
