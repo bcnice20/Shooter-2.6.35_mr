@@ -52,9 +52,9 @@
  * The PLL hardware is capable of 384MHz to 1536MHz. The L_VALs
  * used for calibration should respect these limits. */
 #define L_VAL_SCPLL_CAL_MIN	0x08 /* =  432 MHz with 27MHz source */
-#define L_VAL_SCPLL_CAL_MAX	0x1C /* = 1512 MHz with 27MHz source */
+#define L_VAL_SCPLL_CAL_MAX	0x22 /* = 1512 MHz with 27MHz source */
 
-#define MAX_VDD_SC		1250000 /* uV */
+#define MAX_VDD_SC		1450000 /* uV */
 #define MAX_AXI			 310500 /* KHz */
 #define SCPLL_LOW_VDD_FMAX	 594000 /* KHz */
 #define SCPLL_LOW_VDD		1000000 /* uV */
@@ -196,7 +196,18 @@ static struct clkctl_l2_speed l2_freq_tbl_v2[] = {
 	[13] = {1080000,  1, 0x14, 1100000, 1200000, 2},
 	[14] = {1134000,  1, 0x15, 1100000, 1200000, 2},
 	[15] = {1188000,  1, 0x16, 1200000, 1200000, 3},
-	[16] = {1404000,  1, 0x1A, 1200000, 1250000, 3},
+	[16] = {1242000,  1, 0x17, 1200000, 1212500, 3},
+	[17] = {1296000,  1, 0x18, 1200000, 1225000, 3},
+	[18] = {1350000,  1, 0x19, 1200000, 1225000, 3},
+	[19] = {1404000,  1, 0x1A, 1200000, 1250000, 3},
+	[20] = {1458000,  1, 0x1B, 1200000, 1250000, 3},
+	[21] = {1512000,  1, 0x1C, 1200000, 1300000, 3},
+	[22] = {1566000,  1, 0x1D, 1200000, 1300000, 3},
+	[23] = {1620000,  1, 0x1E, 1200000, 1300000, 3},
+	[24] = {1647000,  1, 0x1F, 1250000, 1350000, 3},
+	[25] = {1728000,  1, 0x20, 1250000, 1350000, 3},
+	[26] = {1782000,  1, 0x21, 1300000, 1400000, 3},
+	[27] = {1836000,  1, 0x22, 1350000, 1450000, 3},
 };
 
 #define L2(x) (&l2_freq_tbl_v2[(x)])
@@ -222,6 +233,12 @@ static struct clkctl_acpu_speed acpu_freq_tbl_v2[] = {
   { {1, 1}, 1134000,  ACPU_SCPLL, 0, 0, 1, 0x15, L2(14), 1162500, 0x03006000},
   { {1, 1}, 1188000,  ACPU_SCPLL, 0, 0, 1, 0x16, L2(15), 1187500, 0x03006000},
   { {1, 1}, 1512000,  ACPU_SCPLL, 0, 0, 1, 0x1C, L2(16), 1250000, 0x03006000},
+  { {1, 1}, 1566000,  ACPU_SCPLL, 0, 0, 1, 0x1D, L2(20), 1275000, 0x03006000},
+  { {1, 1}, 1620000,  ACPU_SCPLL, 0, 0, 1, 0x1E, L2(20), 1300000, 0x03006000},
+  { {1, 1}, 1674000,  ACPU_SCPLL, 0, 0, 1, 0x1F, L2(21), 1325000, 0x03006000},
+  { {1, 1}, 1728000,  ACPU_SCPLL, 0, 0, 1, 0x20, L2(21), 1350000, 0x03006000},
+  { {1, 1}, 1782000,  ACPU_SCPLL, 0, 0, 1, 0x21, L2(22), 1375000, 0x03006000},
+  { {1, 1}, 1836000,  ACPU_SCPLL, 0, 0, 1, 0x22, L2(22), 1400000, 0x03006000},
   { {0, 0}, 0 },
 };
 /* acpu_freq_tbl row to use when reconfiguring SC/L2 PLLs. */
@@ -772,7 +789,7 @@ static void __init bus_init(void)
 }
 
 #ifdef CONFIG_CPU_FREQ_MSM
-static struct cpufreq_frequency_table freq_table[NR_CPUS][20];
+static struct cpufreq_frequency_table freq_table[NR_CPUS][32];
 
 static void __init cpufreq_table_init(void)
 {
@@ -857,7 +874,7 @@ static unsigned int __init select_freq_plan(void)
 		max_khz = 1512000;
 	else
 //		max_khz = 1188000;
-		max_khz = 1512000;
+		max_khz = 1836000;
 
 	/* Truncate the table based to max_khz. */
 	for (f = acpu_freq_tbl; f->acpuclk_khz != 0; f++) {
